@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Login / Register</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    form { margin-bottom: 20px; }
+    input { margin: 5px 0; padding: 5px; width: 200px; }
+    button { padding: 5px 10px; }
+    #response { margin-top: 10px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Register</h1>
+  <form id="registerForm">
+    <input type="text" id="registerUsername" placeholder="Username" required><br>
+    <input type="password" id="registerPassword" placeholder="Password" required><br>
+    <button type="submit">Register</button>
+  </form>
+
+  <h1>Login</h1>
+  <form id="loginForm">
+    <input type="text" id="loginUsername" placeholder="Username" required><br>
+    <input type="password" id="loginPassword" placeholder="Password" required><br>
+    <button type="submit">Login</button>
+  </form>
+
+  <div id="response"></div>
+
+  <script>
+    async function postData(url = '', data = {}) {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const text = await response.text();
+      if (!response.ok) throw new Error(text);
+      return text;
+    }
+
+    document.getElementById('registerForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const username = document.getElementById('registerUsername').value;
+      const password = document.getElementById('registerPassword').value;
+
+      try {
+        const result = await postData('/api/users/register', { username, password });
+        document.getElementById('response').textContent = result;
+      } catch (err) {
+        document.getElementById('response').textContent = err.message;
+      }
+    });
+
+    document.getElementById('loginForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const username = document.getElementById('loginUsername').value;
+      const password = document.getElementById('loginPassword').value;
+
+      try {
+        const result = await postData('/api/users/login', { username, password });
+        document.getElementById('response').textContent = result;
+      } catch (err) {
+        document.getElementById('response').textContent = err.message;
+      }
+    });
+  </script>
+</body>
+</html>
