@@ -38,8 +38,9 @@ portfolio/
 ├── frontend/          # Vite + React frontend
 │   ├── src/
 │   └── public/
+├──proxy-server/       #Node.js + Express server
 ├── README.md
-└── ...
+
 
 
 ## ⚙️ Getting Started
