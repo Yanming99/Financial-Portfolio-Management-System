@@ -33,6 +33,7 @@ A full-stack web application for managing personal financial assets, visualizing
 ## 📦 Project Structure
 
 portfolio/
+
 ├── backend/ # Spring Boot backend
 ├── frontend/ # Vite + React frontend
 │ ├── src/
