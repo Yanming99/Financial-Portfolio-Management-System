@@ -1,3 +1,4 @@
+// LoginForm.js
 import React, { useState } from 'react';
 
 export default function LoginForm({ onResponse }) {
@@ -20,23 +21,36 @@ export default function LoginForm({ onResponse }) {
     }
   };
 
+  const handleGoogleLogin = () => {
+
+    window.location.href = 'http://localhost:3000/auth/google';
+  };
+
   return (
-    <form onSubmit={login}>
-      <h2>Login</h2>
-      <input
-        value={username}
-        onChange={e => setUsername(e.target.value)}
-        placeholder="Username"
-        required
-      /><br />
-      <input
-        type="password"
-        value={password}
-        onChange={e => setPassword(e.target.value)}
-        placeholder="Password"
-        required
-      /><br />
-      <button type="submit">Login</button>
-    </form>
+    <div>
+      <form onSubmit={login}>
+        <h2>Login</h2>
+        <input
+          value={username}
+          onChange={e => setUsername(e.target.value)}
+          placeholder="Username"
+          required
+        /><br />
+        <input
+          type="password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          placeholder="Password"
+          required
+        /><br />
+        <button type="submit">Login</button>
+      </form>
+
+      <hr />
+
+      <button onClick={handleGoogleLogin}>
+        Login with Google
+      </button>
+    </div>
   );
 }
