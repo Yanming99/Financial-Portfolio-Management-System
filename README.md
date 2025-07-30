@@ -38,7 +38,9 @@ portfolio/
 ├── frontend/          # Vite + React frontend
 │   ├── src/
 │   └── public/
+
 ├──proxy-server/       #Node.js + Express server
+├── NESTJS/             #NEST for google oauth and JWT
 ├── README.md
 
 
